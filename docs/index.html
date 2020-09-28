@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--WebMIDI.js-->
+    <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
+
+    <!--P5.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+
+    <!--ml5-->
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+
+    <!--Stilos-->
+    <link rel="stylesheet" href="style.css">
+    <title>KNN Clasificador🎯</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Cabezera -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card teal darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Demo Clasificador de Imagenes de ALSW</span>
+                        <p>Neurona clasificadora de imagenes implementa en ML5, que puede ser entrenada desde el
+                            navegador Web usando el Adgoritmo KNN de clasificación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row z-depth-1 orange lighten-5">
+            <div class="card z-depth-5">
+
+
+                <!-- Bara izquierda -->
+                <div class="col s6 orange lighten-5">
+                    <div class="card-panel light green center-align">
+                        <span class="card-title white-text">Entrenamiento</span>
+                    </div>
+
+                    <!--Campo Texto Input-->
+                    <div class="divider"></div>
+                    <div class="section center-align">
+                        <h5>Entrenar Clases</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix">add_circle_outline</i>
+                            <input id="TextBox" type="text" data-length="10">
+                            <label for="TextBox">La imagen es:</label>
+                        </div>
+
+                        <!--Botones-->
+                        <a id="addClass" class="btn-floating btn-large waves-effect deep-orange"><i
+                                class="material-icons" title="Añadir">add</i></a>
+                        <a id="refresh" class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                class="material-icons" title="Refresh" onclick="RefreshNeurona()">autorenew</i></a>
+                        <a id="Encendido" class="btn-floating btn-large waves-effect waves-light purple lighten-3"><i
+                                class="material-icons" title="Conectar MIDI" onclick="conectar()">music_note</i></a>
+                        <a id="Apagado" class="btn-floating btn-large waves-effect waves-light red"><i
+                            class="material-icons" title="Apagar MIDI" onclick="desconectar()">do_not_disturb</i></a> 
+
+
+                        <!--Clases-->
+                        <div id="clases"></div>
+                    </div>
+                </div>
+
+
+                <!--Panel vídeo-->
+                <div id="captura"></div>
+
+                <div class="col s6 orange lighten-4 center-align">
+                    <div id="Estado" class="card-panel orange lighten-1 center-align">
+                        <span id="CartaMensaje" class="card-title white-text">Cargando...</span>
+                    </div>
+
+                    <!--Contenedor Vídeo-->
+                    <div id="input"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--MIDI-->
+        <div class="row">
+            <div class="col s4">
+                <div class="card-panel red lighten-3">
+                    <label class="black-text">MIDI OUT</label>
+                    <select id="SelOUT" class="browser-default">
+                        <option id="predefinido" value="" disabled selected>Salida MIDI</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!--Footer-->
+        <footer class="page-footer teal darken-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">ArtTec</h5>
+                        <p class="grey-text text-lighten-4">Diseño en Arte y Electrónica.
+                        </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Link</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="https://ml5js.org/">Ml5</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright teal darken-3">
+                <div class="container">
+                    Por Honorino García
+                    <a class="grey-text text-lighten-4 right">artetecnologia.artec@gmail.com</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="midi.js"></script>
+    <script src="notas.js"></script>
+</body>
+
+</html>
