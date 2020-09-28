@@ -70,7 +70,14 @@ function onAddClass() {
 
 //Añande el HTML de la clase
 function addClase(nombre) {
-    if (exist(nombre) || clases.length >= CLASS_LIMIT || nombre == "") return; //comprueba que la clase sea correcta
+    if (exist(nombre) || clases.length >= CLASS_LIMIT || nombre == ""){
+        M.toast({
+            html: "Inroduce un nombre para la clase",
+            displayLength: 2000,
+            classes: 'purple rounded'
+        });
+        return; //comprueba que la clase sea correcta
+    } 
 
     //Dibuja el HTML
     clase = document.getElementById('clases');
