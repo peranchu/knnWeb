@@ -34,13 +34,35 @@
             <div class="col s12">
                 <div class="card teal darken-1">
                     <div class="card-content white-text">
-                        <span class="card-title">Clasificador de Imagenes de ALSW</span>
-                        <p>Neurona clasificadora de imagenes implementa en ML5, que puede ser entrenada desde el
-                            navegador Web usando el Adgoritmo KNN de clasificación</p>
+                        <span class="card-title">Clasificador de Imagenes</span>
+                    </div>
+                </div>
+
+                <div class="col s2">
+                    <!-- Modal Trigger -->
+                    <button data-target="modal1" class="btn modal-trigger red lighten-2">INFO</button>
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>Clasificador Imagenes KNN</h4>
+                            <p>Neurona clasificadora de imágnes implementada en ML5, entrenada
+                                desde el navegador web, es capaz de reconocer imágenes y convertirlas en secuencias
+                                armónicas, enviando mensajes MIDI a cualquier instrumento virtual que acepte este
+                                protocolo.
+                            </p>
+                            <p>Si usas Mozilla-Firefox tendrás que instalar el pluging "Jazz-MIDI". En la sección
+                                de links podrás encontrar los enlaces de descarga para este pluging como para
+                                instrumentos virtuales.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
         <div class="row z-depth-1 orange lighten-5">
@@ -71,7 +93,8 @@
                         <a id="Encendido" class="btn-floating btn-large waves-effect waves-light purple lighten-3"><i
                                 class="material-icons" title="Conectar MIDI" onclick="conectar()">music_note</i></a>
                         <a id="Apagado" class="btn-floating btn-large waves-effect waves-light red"><i
-                            class="material-icons" title="Apagar MIDI" onclick="desconectar()">do_not_disturb</i></a> 
+                                class="material-icons" title="Apagar MIDI"
+                                onclick="desconectar()">do_not_disturb</i></a>
 
 
                         <!--Clases-->
@@ -126,6 +149,10 @@
                         <h5 class="white-text">Link</h5>
                         <ul>
                             <li><a class="grey-text text-lighten-3" href="https://ml5js.org/">Ml5</a>
+                            </li>
+                            <li><a class="grey-text text-lighten-3" href="https://jazz-soft.net/">Jazz-MIDI</a>
+                            </li>
+                            <li><a class="grey-text text-lighten-3" href="https://bedroomproducersblog.com/2015/08/08/matt-tytel-helm-vst/">Helm</a>
                             </li>
                         </ul>
                     </div>

@@ -2,6 +2,12 @@
 ====================== INSTANCIACIÓN ELEMENTOS DOM ==================
 */
 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+
+
 
 document.getElementById('addClass').addEventListener('click', onAddClass);
 
