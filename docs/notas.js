@@ -50,7 +50,7 @@ let mensajeNota = [];
 
 //crea desde las etiquetas del objeto, las clases MIDI
 function CapturaDatos() {
-    mensajeNota = [];
+    mensajeNota = [];  //Limpia el array
 
     for (let i = 0; i < Basedatos.length; i++) {
         //console.log(Basedatos);
@@ -66,7 +66,7 @@ function CapturaDatos() {
 }
 
 
-//Cpmprobacion mensajes y Carga
+//Cpmprobacion mensajes, creación de las clases y Carga
 function Comprobacion(name, tono, grado, modo) {
     //CM
     if (tono === "C" && grado === "I" && modo === "Mayor") { //CM

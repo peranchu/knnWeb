@@ -11,6 +11,7 @@ let estado = false;
 
 let midiOut = [];
 
+//Desconecta el MIDI desde el boton apagar MIDI
 function desconectar(){
     WebMidi.disable();
     document.getElementById('SelOUT').value = "Salida MIDI";
@@ -21,7 +22,7 @@ function desconectar(){
     });
 }
 
-//comieza conexión MIDI
+//comieza conexión MIDI desde el botón conectar MIDI
 function conectar() {
     WebMidi.enable(function (err) {
         if (err) {
@@ -63,7 +64,7 @@ function displayDevices() {
 }
 
 
-//Envía el mensaje MIDI por el puerto de salida
+//Envía el mensaje MIDI noteON por el puerto de salida
 function MensajeON(pitch) {
     device = midiOut[SelOUT.selectedIndex];
 
@@ -72,7 +73,7 @@ function MensajeON(pitch) {
     });
 }
 
-//Envía el mensaje MIDI por el puerto de salida
+//Envía el mensaje MIDI noteOFF por el puerto de salida
 function MensajeOFF(pitch) {
     device = midiOut[SelOUT.selectedIndex];
 

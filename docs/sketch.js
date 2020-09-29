@@ -2,13 +2,13 @@
 ====================== INSTANCIACIÓN ELEMENTOS DOM ==================
 */
 
+//Inicialización de los elementos JavaScript de materialize
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
   });
 
-
-
+//Botón añadir clase
 document.getElementById('addClass').addEventListener('click', onAddClass);
 
 
@@ -27,7 +27,6 @@ function CambiarGrado(nombre) {
     var displayG = CambiarG.options[CambiarG.selectedIndex].text;
     //console.log(displayG);
     return displayG;
-
 }
 
 //MODO
@@ -36,7 +35,6 @@ function CambiarModo(nombre) {
     var displayM = CambiarM.options[CambiarM.selectedIndex].text;
     //console.log(displayM);
     return displayM;
-
 }
 
 //=================================================================
@@ -73,16 +71,16 @@ function onAddClass() {
 }
 
 
-
 //Añande el HTML de la clase
 function addClase(nombre) {
+    //comprueba que la clase sea correcta
     if (exist(nombre) || clases.length >= CLASS_LIMIT || nombre == ""){
         M.toast({
             html: "Inroduce un nombre para la clase",
             displayLength: 2000,
             classes: 'purple rounded'
         });
-        return; //comprueba que la clase sea correcta
+        return; 
     } 
 
     //Dibuja el HTML
@@ -144,8 +142,9 @@ function addClase(nombre) {
 
 
 
-//Toma una captura de video como ejemplo
+//Toma una captura de video como ejemplo desde el botón capturar de cada clase
 function captura(nombre) {
+    //Valida que los campos select esten llenos
     if (validar(nombre) === true) {
         let img = new Image();
 
@@ -158,11 +157,12 @@ function captura(nombre) {
 
         foto.innerHTML += ` 
         <img id="foto${nombre}" class="center" src = "${img.src = SketchCanvas.elt.toDataURL()}" width="100" height="100">  
-    `
+        `
 
         //Representa el Botón de entrenar
         var captura = document.getElementById('train' + nombre);
 
+        //Crea la etiqueta de entrenamiento
         captura.innerHTML += `
         <div id="centrado" class="col s12 center-align">
             <a id="btntrain${nombre}" class="btn-floating btn-large waves-effect blue darken-1" title="Entrenar" onclick ="Entrenar('${nombre}')"><i class="material-icons">accessibility</i></a>  
@@ -187,6 +187,7 @@ function captura(nombre) {
             </div>
         </div>
         `
+
         //Crea las nuevas clases de objetos
         newDatos = new DatosCaptura(nombre, CambiarTonalidad(nombre), CambiarGrado(nombre), CambiarModo(nombre));
 
@@ -239,7 +240,7 @@ function draw() {
         let Ancho = width;
         let Alto = Ancho * RelacionCamara2;
         RelacionCamara = RelacionCamara2;
-        console.log("Cambiado " + Ancho + " - " + Alto);
+        //console.log("Cambiado " + Ancho + " - " + Alto);
         resizeCanvas(Ancho, Alto, true);
     }
 
@@ -255,14 +256,14 @@ function draw() {
 //=============================== FUNCIONES ===============================
 //Neurona
 function ModeloListo() {
-    console.log("Modelo Listo");
+    //console.log("Modelo Listo");
     CartaMensaje.innerHTML = "Modelo Listo";
 }
 
 
 //Entrenar
 function Entrenar(nombre) {
-    console.log("entrenando" + nombre);
+    //console.log("entrenando" + nombre);
     var logits = modelo.infer(Camara);
     knn.addExample(logits, nombre);
 }
@@ -281,10 +282,14 @@ function clasificar() {
                 var Confianza;
 
                 Etiqueta = result.label;
+
+                //Barra de confianza
                 Confianza = Math.ceil(result.confidencesByLabel[result.label] * 100);
 
+                //Mensaje etiqueta y porcentaje de acierto
                 CartaMensaje.innerHTML = Etiqueta + " - " + Confianza + "%";
 
+                //Actualiza barra de confianza
                 updateBar(result);
                 
                 //Activa la secuencia armónica según la etiqueta detectada
@@ -292,10 +297,10 @@ function clasificar() {
                     if (mensajeNota[i].nombre == Etiqueta) {
                         if (UsoEtiqueta != Etiqueta) {
                             UsoEtiqueta = mensajeNota[i].nombre;
-                            MensajeOFF(Ultimoacorde);
+                            MensajeOFF(Ultimoacorde);   //Enviado noteOFF a midi.js
                             Ultimoacorde = mensajeNota[i].acorde;
                             //console.log(Ultimoacorde);
-                            MensajeON(Ultimoacorde);
+                            MensajeON(Ultimoacorde);    //Enviado noteON a midi.js
                             //console.log("si");
                         } 
                     }
@@ -309,7 +314,7 @@ function clasificar() {
 
 //Borrar Neurona
 function RefreshNeurona() {
-    console.log("Borrado HTML");
+    //console.log("Borrado HTML");
 
      //MensajeOff MIDI
      MensajeOFF(Ultimoacorde);
@@ -322,14 +327,16 @@ function RefreshNeurona() {
 
     UsoEtiqueta = "vacio";
    
+    //Borrado de clases HTML
     clase = document.getElementById('clases');
     clase.innerHTML = ``; //Elimina El HTML
 
     foto = document.getElementById('captura');
     foto.innerHTML = ``;
 
+    //Borra las etiquetas a sociadas a la Neurona
     if (Clasificado) {
-        Clasificado = false;
+        Clasificado = false; //Deja de clasificar
         clearInterval(clasificar);
         knn.clearAllLabels();
         CartaMensaje.innerHTML = "Neurona Borrada";
@@ -384,6 +391,7 @@ function validar(nombre) {
     return true;
 }
 
+
 //Comprueba que la clase no exista
 function exist(nombre) {
     //console.log(nombre);
@@ -400,14 +408,13 @@ function windowResized() {
 }
 
 
-
 //Crea el objeto y lo guarda en "Basedatos[]"
 function AddDatos() {
     Basedatos.push(newDatos);
     console.log(Basedatos);
 }
 
-
+//Crea las clases de las etiquetas
 function DatosCaptura(nombre, tonalidad, grado, modo) {
     this.nombre = nombre;
     this.tonalidad = tonalidad;
