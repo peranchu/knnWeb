@@ -11,6 +11,9 @@ let estado = false;
 
 let midiOut = [];
 
+//Inicia la conexión MIDI
+conectar();
+
 //Desconecta el MIDI desde el boton apagar MIDI
 function desconectar(){
     WebMidi.disable();
@@ -26,14 +29,14 @@ function desconectar(){
 function conectar() {
     WebMidi.enable(function (err) {
         if (err) {
-            console.log("Error MIDI", err);
+            //console.log("Error MIDI", err);
             M.toast({
                 html: 'Error MIDI',
                 displayLength: 2000,
                 classes: 'red lighten-1 rounded'
             });
         } else {
-            console.log("MIDI Habilitado");
+            //console.log("MIDI Habilitado");
             M.toast({
                 html: 'MIDI Habilitado',
                 displayLength: 2000,

@@ -298,7 +298,7 @@ function Comprobacion(name, tono, grado, modo) {
 //Agregar Mensajes MIDI al array "mensajeNota []"
 function addMensaje() {
     mensajeNota.push(newMIDI);
-    console.log(mensajeNota);
+    //console.log(mensajeNota);
 }
 
 //Crea las nuevas clases de los mensajes MIDI

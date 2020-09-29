@@ -276,6 +276,11 @@ function clasificar() {
         knn.classify(logits, function (error, result) {
             if (error) {
                 console.log("Error en Clasificar", error);
+                M.toast({
+                    html: "Comprueba que el MIDI está activado",
+                    displayLength: 2000,
+                    classes: 'red lighten-1 rounded'
+                });
             } else {
                 //console.log(result);
                 Etiqueta;
@@ -411,7 +416,7 @@ function windowResized() {
 //Crea el objeto y lo guarda en "Basedatos[]"
 function AddDatos() {
     Basedatos.push(newDatos);
-    console.log(Basedatos);
+    //console.log(Basedatos);
 }
 
 //Crea las clases de las etiquetas
