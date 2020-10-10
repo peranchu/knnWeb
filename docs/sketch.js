@@ -1,4 +1,12 @@
 /*
+Red Neuronal basada en las librerías ML5.js
+Capaz de reconocer y clasificar imágenes capturadas desde la webcam
+Por Honorino García
+Bajo licencia Creative commons
+Octubre 2020
+*/
+
+/*
 ====================== INSTANCIACIÓN ELEMENTOS DOM ==================
 */
 
